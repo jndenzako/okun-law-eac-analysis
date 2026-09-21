@@ -1,0 +1,7 @@
+Country,Country_Code,Years_Available,First_Year,Last_Year,GDP_Growth_Mean,Female_LFP_Mean,Women_Parliament_Mean,Secondary_Ratio_Mean,Missing_Rate_Pct
+Burundi,BDI,14,2000,2013,-0.05,84.58,25.79,0.72,14.29
+Kenya,KEN,14,2000,2013,1.19,61.78,8.16,0.94,14.29
+Rwanda,RWA,14,2000,2013,4.98,87.86,47.6,0.92,14.29
+South Sudan,SSD,14,2000,2013,-13.19,NA,26.5,NA,100
+Tanzania,TZA,14,2000,2013,3.81,89.93,28.97,0.85,28.57
+Uganda,UGA,14,2000,2013,3.23,78.89,28.48,0.81,14.29

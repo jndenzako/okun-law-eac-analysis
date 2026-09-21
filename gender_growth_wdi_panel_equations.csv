@@ -1,0 +1,4 @@
+Model,Equation
+Pooled OLS,g_it = α + β1 FemaleLFP_it + β2 WomenParliament_it + β3 Fertility_it + β4 Capital_it + β5 Inflation_it + β6 Trade_it + ε_it
+Two-way fixed effects,g_it = α + β1 FemaleLFP_it + β2 WomenParliament_it + β3 Fertility_it + β4 Capital_it + β5 Inflation_it + β6 Trade_it + μ_i + λ_t + ε_it
+Education-augmented OLS,g_it = α + β1 FemaleLFP_it + β2 WomenParliament_it + β3 SecondaryRatio_it + β4 Fertility_it + β5 Capital_it + β6 Inflation_it + β7 Trade_it + ε_it

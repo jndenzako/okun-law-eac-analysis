@@ -3,6 +3,7 @@
 This repository contains R scripts for:
 - estimating and visualizing **Okun's Law** for East African Community (EAC) countries using data from the World Bank's World Development Indicators (WDI) dataset
 - analyzing **school-to-work transition outcomes** for young graduates using a synthetic dataset that mimics graduate transition survey data
+- building a **WDI panel dataset on gender and economic growth** for East Africa and estimating comparative regression models
 
 ## Overview
 
@@ -39,7 +40,7 @@ The analysis covers the following East African Community members:
 ## Requirements
 
 ```r
-install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom", "dplyr", "tidyr", "readr", "scales"))
+install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom", "dplyr", "tidyr", "readr", "scales", "patchwork", "knitr", "kableExtra", "rmarkdown", "sandwich", "lmtest"))
 ```
 
 ### Required R Packages:
@@ -50,6 +51,10 @@ install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom", "dplyr",
 - **broom**: Extract regression results
 - **readr**: Export analysis outputs
 - **scales**: Format percentages and currency in charts
+- **patchwork**: Combine multiple ggplot panels into a dashboard
+- **knitr** and **kableExtra**: Produce formatted HTML tables
+- **rmarkdown**: Render the analytical report
+- **sandwich** and **lmtest**: Report heteroskedasticity-robust regression results
 
 ## Usage
 
@@ -69,7 +74,13 @@ source("okun_law_analysis.R")
 source("school_to_work_transition_analysis.R")
 ```
 
-4. The scripts will:
+4. Run the gender-growth WDI panel analysis:
+```r
+source("gender_growth_wdi_panel_analysis.R")
+rmarkdown::render("gender_growth_wdi_panel_analysis.Rmd")
+```
+
+5. The scripts will:
    - Download WDI data for all EAC countries
    - Estimate Okun's Law regression for each country individually
    - Generate individual plots showing the relationship
@@ -78,6 +89,9 @@ source("school_to_work_transition_analysis.R")
    - Generate a synthetic graduate transition survey for EAC countries
    - Estimate employment and earnings models for young graduates
    - Produce descriptive tables and a dashboard for school-to-work outcomes
+   - Download a WDI-based gender-growth panel for East Africa
+   - Produce formatted HTML tables, graphics, and regression summaries
+   - Render a reproducible R Markdown report for the gender-growth analysis
 
 ## Output Files
 
@@ -90,6 +104,20 @@ source("school_to_work_transition_analysis.R")
 - **`school_to_work_employment_model.csv`**: Logistic regression results for employment odds
 - **`school_to_work_earnings_model.csv`**: Linear regression results for graduate earnings
 - **`school_to_work_transition_dashboard.png`**: Multi-panel visualization of transition outcomes
+- **`gender_growth_wdi_panel_dataset.csv`**: Country-year WDI panel used for the gender-growth study
+- **`gender_growth_wdi_panel_country_summary.csv`**: Coverage and indicator averages by country
+- **`gender_growth_wdi_panel_descriptive_statistics.csv`**: Baseline sample descriptive statistics
+- **`gender_growth_wdi_panel_regression_results.csv`**: Regression coefficients for pooled OLS and fixed-effects models
+- **`gender_growth_wdi_panel_model_fit.csv`**: Model fit statistics for each specification
+- **`gender_growth_wdi_panel_equations.csv`**: Regression equations used in the report
+- **`gender_growth_wdi_panel_dashboard.png`**: Multi-panel visualization of gender inclusion and growth
+- **`gender_growth_wdi_panel_analysis.html`**: Rendered R Markdown report
+
+## Gender and Economic Growth Panel Analysis
+
+The new WDI panel analysis studies how gender inclusion indicators move with GDP per capita growth in East Africa. It assembles a country-year panel from WDI series on female labor force participation, women in parliament, fertility, secondary enrollment, investment, inflation, and trade openness, then estimates pooled OLS and two-way fixed-effects models.
+
+The analysis title is **"Women's Economic Inclusion and GDP per Capita Growth in East Africa: A WDI Panel Analysis, 2000-2011"**. The script attempts a direct WDI download first and falls back to a GitHub mirror of WDI extracts when the live API is unavailable, so the workflow remains reproducible in restricted environments.
 
 ## School-to-Work Transition Analysis
 

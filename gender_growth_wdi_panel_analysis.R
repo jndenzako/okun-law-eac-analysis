@@ -124,12 +124,14 @@ attempt_wdi_download <- function(countries, years, indicators) {
   message("Attempting direct WDI download...")
 
   tryCatch({
-    WDI::WDI(
-      country = countries,
-      indicator = indicators,
-      start = min(years),
-      end = max(years),
-      extra = TRUE
+    suppressWarnings(
+      WDI::WDI(
+        country = countries,
+        indicator = indicators,
+        start = min(years),
+        end = max(years),
+        extra = TRUE
+      )
     ) %>%
       select(country, iso3c, year, all_of(names(indicators))) %>%
       rename(Country = country, Country_Code = iso3c, Year = year)

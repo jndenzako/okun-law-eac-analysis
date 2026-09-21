@@ -1,0 +1,23 @@
+Model,Term,Estimate,SE,Statistic,P_Value,Significance
+Pooled OLS,Intercept,2.948,6.32,0.466,0.6429,
+Pooled OLS,Female labor force participation,0.034,0.057,0.589,0.5585,
+Pooled OLS,Women in parliament,0.076,0.038,1.999,0.051,*
+Pooled OLS,Fertility rate,-0.894,0.634,-1.41,0.1646,
+Pooled OLS,Gross capital formation,0.015,0.106,0.137,0.8919,
+Pooled OLS,Inflation,-0.136,0.062,-2.189,0.0332,**
+Pooled OLS,Trade openness,0.022,0.063,0.357,0.7222,
+Two-way FE (HC1),Intercept,27.651,21.931,1.261,0.2155,
+Two-way FE (HC1),Female labor force participation,0.088,0.279,0.314,0.7557,
+Two-way FE (HC1),Women in parliament,-0.184,0.108,-1.707,0.0965,*
+Two-way FE (HC1),Fertility rate,-5.153,3.606,-1.429,0.1617,
+Two-way FE (HC1),Gross capital formation,0.017,0.072,0.232,0.8177,
+Two-way FE (HC1),Inflation,-0.02,0.066,-0.299,0.7667,
+Two-way FE (HC1),Trade openness,0.012,0.057,0.207,0.8372,
+Education-augmented OLS,Intercept,-29.732,22.573,-1.317,0.1971,
+Education-augmented OLS,Female labor force participation,0.007,0.174,0.041,0.9677,
+Education-augmented OLS,Women in parliament,0.123,0.083,1.479,0.1488,
+Education-augmented OLS,Girls-to-boys secondary enrollment ratio,19.17,10.064,1.905,0.0658,*
+Education-augmented OLS,Fertility rate,1.597,1.345,1.188,0.2437,
+Education-augmented OLS,Gross capital formation,0.002,0.167,0.012,0.9903,
+Education-augmented OLS,Inflation,-0.099,0.119,-0.831,0.4119,
+Education-augmented OLS,Trade openness,0.08,0.108,0.74,0.4647,

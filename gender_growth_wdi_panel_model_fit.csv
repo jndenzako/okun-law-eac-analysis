@@ -1,0 +1,4 @@
+Model,Sample,Observations,R_Squared,Adj_R_Squared,AIC,BIC
+Pooled OLS,Baseline sample,58,0.353,0.276,272.7,289.2
+Two-way FE (HC1),Baseline sample,58,0.763,0.625,244.3,291.7
+Education-augmented OLS,Education sample,40,0.368,0.23,202.6,217.8
