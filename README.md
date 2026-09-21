@@ -1,6 +1,8 @@
 # Okun's Law Analysis for EAC Countries
 
-This repository contains an R script to estimate and visualize **Okun's Law** for East African Community (EAC) countries using data from the World Bank's World Development Indicators (WDI) dataset.
+This repository contains R scripts for:
+- estimating and visualizing **Okun's Law** for East African Community (EAC) countries using data from the World Bank's World Development Indicators (WDI) dataset
+- analyzing **school-to-work transition outcomes** for young graduates using a synthetic dataset that mimics graduate transition survey data
 
 ## Overview
 
@@ -37,7 +39,7 @@ The analysis covers the following East African Community members:
 ## Requirements
 
 ```r
-install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom"))
+install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom", "dplyr", "tidyr", "readr", "scales"))
 ```
 
 ### Required R Packages:
@@ -46,6 +48,8 @@ install.packages(c("WDI", "tidyverse", "ggplot2", "gridExtra", "broom"))
 - **ggplot2**: Advanced plotting
 - **gridExtra**: Arrange multiple plots
 - **broom**: Extract regression results
+- **readr**: Export analysis outputs
+- **scales**: Format percentages and currency in charts
 
 ## Usage
 
@@ -55,22 +59,70 @@ git clone https://github.com/jndenzako/okun-law-eac-analysis.git
 cd okun-law-eac-analysis
 ```
 
-2. Open R or RStudio and run:
+2. Open R or RStudio and run the Okun's Law analysis:
 ```r
 source("okun_law_analysis.R")
 ```
 
-3. The script will:
+3. Run the school-to-work transition analysis:
+```r
+source("school_to_work_transition_analysis.R")
+```
+
+4. The scripts will:
    - Download WDI data for all EAC countries
    - Estimate Okun's Law regression for each country individually
    - Generate individual plots showing the relationship
    - Create a combined visualization
    - Produce a summary table with regression results
+   - Generate a synthetic graduate transition survey for EAC countries
+   - Estimate employment and earnings models for young graduates
+   - Produce descriptive tables and a dashboard for school-to-work outcomes
 
 ## Output Files
 
 - **`okun_law_eac_countries.png`**: Grid of Okun's Law plots for all countries
 - **`okun_law_summary.csv`**: Summary table with regression coefficients, R², and p-values
+- **`school_to_work_synthetic_dataset.csv`**: Synthetic microdata for young graduates
+- **`school_to_work_country_summary.csv`**: Country-level transition indicators
+- **`school_to_work_gender_summary.csv`**: Gender-disaggregated transition indicators
+- **`school_to_work_key_indicators.csv`**: Headline school-to-work transition metrics
+- **`school_to_work_employment_model.csv`**: Logistic regression results for employment odds
+- **`school_to_work_earnings_model.csv`**: Linear regression results for graduate earnings
+- **`school_to_work_transition_dashboard.png`**: Multi-panel visualization of transition outcomes
+
+## School-to-Work Transition Analysis
+
+The synthetic school-to-work transition script mimics graduate tracer survey data for young people in EAC countries and examines:
+
+- transition time from graduation to first job
+- employment, unemployment, and inactivity outcomes
+- formal employment and job-to-field matching
+- earnings differentials across demographic and education characteristics
+- the role of internships, digital skills, and job-search training
+
+### Synthetic Variables Included
+
+- Country
+- Gender
+- Residence
+- Institution type
+- Degree level
+- Field of study
+- Socioeconomic background
+- Graduation year
+- Age
+- CGPA
+- Internship participation
+- Digital skills score
+- Job-search training
+- Months since graduation
+- Employment status
+- Transition months to first job
+- Job relevance/match
+- Formal employment status
+- Contract type
+- Monthly earnings in USD
 
 ## Expected Output
 
