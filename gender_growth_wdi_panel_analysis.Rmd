@@ -1,0 +1,148 @@
+---
+title: "Women's Economic Inclusion and GDP per Capita Growth in East Africa"
+author: "jndenzako"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+source("gender_growth_wdi_panel_analysis.R", local = knitr::knit_global())
+```
+
+# Study title
+
+**`r analysis_results$title`**
+
+# Motivation
+
+This report builds a country-year panel dataset from the World Development Indicators (WDI) and studies whether stronger gender inclusion outcomes move together with faster GDP per capita growth in East Africa. The analysis focuses on the countries with sufficiently consistent WDI coverage for regression work: Burundi, Kenya, Rwanda, Tanzania, and Uganda. South Sudan is retained in the downloaded panel file when available, but it is excluded from the core regressions because the historical gender series are too sparse for a stable panel specification.
+
+# Data and variables
+
+The script downloads or reconstructs a WDI-based panel for 2000-2013 using the following indicator families:
+
+- GDP per capita growth
+- female labor force participation
+- women in parliament
+- fertility rate
+- female and male secondary enrollment
+- gross capital formation
+- inflation
+- trade openness
+
+When the live WDI API is unavailable, the script automatically falls back to a GitHub mirror of WDI indicator extracts so the workflow remains reproducible.
+
+## Country coverage summary
+
+```{r}
+analysis_results$country_summary %>%
+  knitr::kable(
+    format = "html",
+    caption = "Country-level coverage and average indicator values",
+    digits = 2
+  ) %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE
+  )
+```
+
+## Baseline sample descriptive statistics
+
+```{r}
+analysis_results$descriptive_statistics %>%
+  knitr::kable(
+    format = "html",
+    caption = "Descriptive statistics for the baseline regression sample",
+    digits = 2
+  ) %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE
+  )
+```
+
+# Graphics
+
+## Main dashboard
+
+```{r fig.width=14, fig.height=10}
+analysis_results$plots$dashboard_plot
+```
+
+## Female labor force participation trends
+
+```{r fig.width=9, fig.height=5.5}
+analysis_results$plots$female_lfp_plot
+```
+
+## Women's parliamentary representation trends
+
+```{r fig.width=9, fig.height=5.5}
+analysis_results$plots$parliament_plot
+```
+
+# Regression framework
+
+The empirical specifications are summarized below.
+
+```{r}
+analysis_results$equation_table %>%
+  knitr::kable(
+    format = "html",
+    caption = "Regression equations used in the analysis"
+  ) %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE
+  )
+```
+
+# Regression results
+
+```{r}
+analysis_results$regression_table %>%
+  knitr::kable(
+    format = "html",
+    caption = "Estimated coefficients",
+    digits = 3
+  ) %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE
+  )
+```
+
+## Model fit summary
+
+```{r}
+analysis_results$model_glance %>%
+  knitr::kable(
+    format = "html",
+    caption = "Model fit summary"
+  ) %>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE
+  )
+```
+
+# Interpretation
+
+The descriptive evidence shows that female labor force participation remained comparatively high across the region, while women’s parliamentary representation improved markedly in several countries. The regression tables should be read as associative rather than strictly causal estimates, but they provide a compact way to compare whether years with stronger gender inclusion indicators tend to coincide with faster GDP per capita growth.
+
+The two-way fixed effects model is the most conservative specification because it removes time-invariant country differences and common year shocks. The education-augmented model uses a smaller sample because secondary enrollment series are incomplete for some country-year combinations.
+
+# Reproducibility
+
+To reproduce the analysis from the repository root:
+
+```{r eval=FALSE}
+source("gender_growth_wdi_panel_analysis.R")
+rmarkdown::render("gender_growth_wdi_panel_analysis.Rmd")
+```
